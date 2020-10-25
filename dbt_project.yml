@@ -1,7 +1,7 @@
 
 name: 'ra_dw_framework'
 version: '0.0.1'
-require-dbt-version: ">=0.17.0"
+require-dbt-version: ">=0.18.0"
 config-version: 2
 
 profile: ra_dw_framework
