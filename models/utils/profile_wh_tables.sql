@@ -1,5 +1,5 @@
 {{ config(
-    tags=["manual"]
+    enabled = false
 ) }}
 
 {% set warehouse_schema = target.schema %}
