@@ -34,9 +34,16 @@ Add submodules
     2. `rm -rf .git/modules/a/ra_fw_source_segment`
     3. `git rm -f a/ra_fw_source_segment`
 
-# Update a submodule
+Update a submodule
 * Go to the submodules root and update as with any git repository
-* `git pull origin master` 
+* You can see that it points to that module's git repository: `git remote -v`
+* Update to latest version: `git pull origin master` 
+
+Initialising submodules when clone a repository
+* `git submodule init`
+* `git submodule update`
+
+Here's a resource for [more info on working with submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
 # Package dependencies
 * Some modules depend on dbt packages, so be sure to...
