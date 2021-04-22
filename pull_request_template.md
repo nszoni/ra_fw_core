@@ -7,35 +7,39 @@ Provide a short summary in the Title above. Examples of good PR titles:
 
 ## Description & motivation
 <!---
-Describe your changes, and why you're making them. Is this linked to an open
-issue, a Trello card, or another pull request? Link it here.
+Add a description of what that storie's goal is, or add a link to its associated Jira ticket.
 -->
 
-## Changes to existing models:
+## Changes to ERD
 <!---
-Include this section if you are changing any existing models. Link any related
-pull requests on your BI tool, or instructions for merge (e.g. whether old
-models should be dropped after merge, or whether a full-refresh run is required)
+Based on the description above, what are the changes you're making in the warehouse layer. Add a screenshot of the ERD you're changing and add description of main changes happening (e.g. new fact table added; adding new fields, etc.)
+Here are the commands to generate graph:
+- dbdocs build wh_docs/warehouse.dbml
+- Follow link
+- Go to dag
+- Screenshot
 -->
 
-## Screenshots:
+## Changes to DAG
 <!---
-Include a screenshot of the relevant section of the updated DAG. You can access
-your version of the DAG by running `dbt docs generate && dbt docs serve`.
+Show us the relevant dbt models that are being introduced or changed by inserting a screen shot of the DAG section that is impacted. 
+Here are the commands to generate graph:
+- dbt docs generate
+- dbt docs serve
+- Go to Relationship tab
+- Screenshot
 -->
 
 ## Checklist:
 <!---
-This checklist is mostly useful as a reminder of small things that can easily be
-forgotten – it is meant as a helpful tool rather than hoops to jump through.
-Put an `x` in all the items that apply, make notes next to any that haven't been
-addressed, and remove any items that are not relevant to this PR.
+This is for you as a developer. Have you done all the following tasks before submitting this PR?
 -->
-- [ ] My pull request represents one logical piece of work.
-- [ ] My commits are related to the pull request and look clean.
-- [ ] My SQL follows the [Fishtown Analytics style guide](https://github.com/fishtown-analytics/corp/blob/master/dbt_coding_conventions.md).
+- [ ] My pull request represents one story (logical piece of work).
+- [ ] My SQL follows the [project's style guide](dbt_coding_conventions.md).
 - [ ] I have materialized my models appropriately.
 - [ ] I have added appropriate tests and documentation to any new models.
 - [ ] I ran the dbt package in my development environment without error.
+- [ ] I ran the dbt test suite in my development environment without error.
+- [ ] I ran the sqlfluff linter in my development environment without error.
+- [ ] I ran `dbt run-operation evaluate_required_docs` and `dbt run-operation evaluate_required_tests` in my development environment without error.
 - [ ] My dbt package has no residual models that are no longer used.
-- [ ] Any data issues remaining are client's responsibility.

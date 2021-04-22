@@ -1,0 +1,15 @@
+project wh_fw_core {
+
+	database_type: 'bigquery'
+	note: '''
+		# Rittman Analytics Core Data Warehouse
+	'''
+
+}
+
+//CORE WAREHOUSE
+table entity_dim {
+
+	entity_pk varchar [pk]
+
+}
