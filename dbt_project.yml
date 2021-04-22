@@ -1,7 +1,7 @@
 
 name: 'ra_dw_framework'
 version: '0.0.1'
-require-dbt-version: ">=0.18.0"
+require-dbt-version: ">=0.19.1"
 config-version: 2
 
 profile: ra_dw_framework
@@ -19,22 +19,28 @@ clean-targets:
     - "dbt_modules"
 
 on-run-start:
+    - "{% do create_schema(api.Relation.create(database=target.project, schema=generate_prefixed_target_name().strip() + '_logs')) %}"
     - "create table if not exists {{ generate_prefixed_target_name() }}_logs.audit_dbt_results (object string, status string, row_count numeric, execution_time numeric, load_ts timestamp)"
-
 on-run-end:
     - "insert into {{ generate_prefixed_target_name() }}_logs.audit_dbt_results (object, status, row_count, execution_time, load_ts) values {{ results_values(results) }}"
 
 models:
+    +persist_docs:
+        +relation: true
+        +columns: true
     ra_dw_framework:
         staging:
-            materialized: view
-            schema: staging
+            +materialized: view
+            +schema: staging
+            +required_docs: true
         integration:
-            materialized: view
-            schema: integration
+            +materialized: view
+            +schema: integration
         warehouse:
-            materialized: table
-        utils:
-            materialized: table
-            schema: logs
-            enabled: false
+            +materialized: table
+            +required_docs: true
+            +required_tests: {"unique": 1, "not_null": 1}
+        logs:
+            +materialized: table
+            +schema: logs
+            +enabled: false
