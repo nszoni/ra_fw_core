@@ -1,5 +1,8 @@
 # Transformation and Testing Sequence and Strategy
 
+This document provides information on the Rittman Analytics framework and how we approach both transformations of data and testing.
+
+
 ## Transformation Sequence
 
 To provide context, let’s review the BI transformation process and the main layers that are composing it. Below is a graphical representation of how data is being progressively transformed into the public warehouse/BI layer.
