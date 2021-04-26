@@ -1,0 +1,10 @@
+version: 2
+
+models:
+
+  - name: stg_source_a__table_name
+    columns:
+      - name: table_name__source_a__natural_key
+        tests:
+          - unique
+          - not_null
