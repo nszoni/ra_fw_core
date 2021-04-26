@@ -1,4 +1,4 @@
-# dbt coding conventions (adapted from https://github.com/fishtown-analytics/corp/blob/master/dbt_coding_conventions.md)
+# dbt coding conventions
 
 ## Model Naming
 Our models (typically) fit into three main categories: staging, integration, warehouse, base/intermediate. The file and naming structures are as follows:
