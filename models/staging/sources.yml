@@ -1,0 +1,9 @@
+version: 2
+sources:
+  - name: source_a
+    database: source_a_db
+    schema: source_a_db_schema
+    tables:
+      - name: s_table_name
+        identifier: table_name
+        
