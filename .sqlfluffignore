@@ -1,3 +1,5 @@
 target/
 dbt_modules/
 macros/
+models/logs/audit_dbt_last_results.sql
+models/logs/profile_wh_tables.sql
