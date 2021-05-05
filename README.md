@@ -1,4 +1,4 @@
-# Dr. B Data Warehouse
+# RA Warehouse Framework Setup Steps
 
 ## Set Up Your Development Environment
 
@@ -10,25 +10,28 @@
         - It should looking something like...
 
         ```yaml
-        drb_dw:
-            target: dev
-            outputs:
-                dev:
-                    type: snowflake
-                    account: yga40986.us-east-1
-                    user: dev1
-                    password: "PWD"
-                    role: TRANSFORMER_DEV
-                    database: DW_DEV
-                    warehouse: TRANSFORMING_DEV
-                    schema: dbt_dev1
-                    threads: 1
-                    client_session_keep_alive: False
+        ra_data_warehouse:
+          outputs:
+            dev:
+              type: bigquery
+              method: service-account-json
+              project: ra-development
+              dataset: analytics
+              location: europe-west2
+              threads: 1
+              timeout_seconds: 300
+              keyfile_json:
+                type: service_account
+                project_id: ra-development
+                private_key_id: f14ff3e3f832464e2f02f6cc964e1bdcf1ca4fb4
+                private_key: "..."
+        client_email: dbt-578@ra-development.iam.gserviceaccount.com
+        client_id: 100669809469159724177
+        auth_uri: https://accounts.google.com/o/oauth2/auth
+        token_uri: https://oauth2.googleapis.com/token
+        auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
+        client_x509_cert_url: https://www.googleapis.com/robot/v1/metadata/x509/dbt-578%40ra-development.iam.gserviceaccount.com
         ```
-
-
-
-
 ## Install dbt and its virtual environment
 
 To not run into dependancy issues, virtual environments are recommended for development.
