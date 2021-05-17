@@ -35,7 +35,7 @@ Here are the commands to generate graph:
 This is for you as a developer. Have you done all the following tasks before submitting this PR?
 -->
 - [ ] My pull request represents one story (logical piece of work).
-- [ ] My SQL follows the [project's style guide](dbt_coding_conventions.md).
+- [ ] My SQL follows the [project's style guide](resources/dbt_coding_conventions.md).
 - [ ] I have materialized my models appropriately.
 - [ ] I have added appropriate tests and documentation to any new models.
 - [ ] I ran the dbt package in my development environment without error.
