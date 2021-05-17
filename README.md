@@ -32,6 +32,8 @@
         auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
         client_x509_cert_url: https://www.googleapis.com/robot/v1/metadata/x509/dbt-578%40ra-development.iam.gserviceaccount.com
         ```
+
+
 ## Install dbt and its virtual environment
 
 To not run into dependancy issues, virtual environments are recommended for development.
@@ -56,3 +58,11 @@ To not run into dependancy issues, virtual environments are recommended for deve
     - `dbt deps` to load packages in your local copy
     - `dbt compile` to compile the project and see if your connection to the data warehouse works as expected
     - `dbt run` to materialize the models in your development schemas
+
+
+## Familiarize yourself with the framework
+This framework has built-in architecture, tooling and conventions. Here's a list of what you should get familiar with:
+- The [transformation and testing sequence](resources/transformation_testing_sequence_strategy.md) documents how we architect our dbt projects.
+- The [dbt coding convention](resources/dbt_coding_conventions.md) which hightlights all the coding's best practices and conventions we follow.
+- The [pull request template](pull_request_template.md) which tells you what's required before submitting a PR for review.
+- The [project's relase process](resources/release_process.jpeg) which gives an overview of how we merge and release new features.
