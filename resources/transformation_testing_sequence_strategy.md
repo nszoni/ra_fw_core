@@ -96,6 +96,27 @@ Another sanity check we do is to create data tests that continuously assess KPI 
 Finally, we can continuously assess that transformations haven't impacted our KPIs by keeping a trace of historical values and checking that when calculating KPIs after a new transformation run, the new values still matches what had been recorded previously. [This technique is documented here](https://discourse.getdbt.com/t/build-snapshot-based-tests-to-detect-regressions-in-historic-data/1478).
 
 
+## Scheduling dbt Runs
+
+The sequence we described above is important, because we want to keep the `public` layer free of errors. That means that if an error is triggered between the `source` and `staging` layers (or between any other layers), then the transformation will stop. It will be the responsibility of the team to deal with that issue before the transformation process can be restarted.
+
+Note that if this transformation process will keep the `public` layer free of errors, but if the transformation process does not execute completely, **the data in that `public` layer will not be refreshed**.
+
+Here's the sequence of dbt commands we normally use:
+
+```
+1. dbt run -m staging.*
+2. dbt test --schema -m staging.*
+3. dbt run -m integration.* 
+4. dbt test --schema -m integration.*
+5. dbt run -m warehouse.*
+6. dbt test --schema -m warehouse.*
+7. dbt test --data
+```
+
+Note that this is for a normal run. If you have incremental models and need to do a full refresh, you should set up a manual full refresh sequence that includes ` --full-refresh` at the end of each `dbt run...` command.
+
+
 ## Dealing with Data Issues
 
 As we are deploying the dbt project to production, the associated suite of tests will start triggering warnings and errors that should be dealt with. In that regards, we need to define what's the escalation process.
@@ -108,13 +129,6 @@ In dbt, each test can can be configured with [either of those 2 levels of severi
 
 - **Warnings** - “If warn is supplied, then dbt will log a warning for any failing tests, but the test will still be considered passing.”
 - **Errors** - As for errors, dbt will log the error and consider the test to fail.
-
-
-### dbt Cloud Setup
-
-The sequence we described above is important, because we want to keep the `public` layer free of errors. That means that if an error is triggered between the `source` and `staging` layers (or between any other layers), then the transformation will stop. It will be the responsibility of the team to deal with that issue before the transformation process can be restarted.
-
-Note that if this transformation process will keep the `public` layer free of errors, but if the transformation process does not execute completely, **the data in that `public` layer will not be refreshed**.
 
 
 ### Escalation Process
