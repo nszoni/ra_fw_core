@@ -40,6 +40,7 @@ This is for you as a developer. Have you done all the following tasks before sub
 - [ ] I have added appropriate tests and documentation to any new models.
 - [ ] I ran the dbt package in my development environment without error.
 - [ ] I ran the dbt test suite in my development environment without error.
+- [ ] I ran the proper regression tests to validate development didn't negatively impact warehouse entities.
 - [ ] I ran the sqlfluff linter in my development environment without error.
 - [ ] I ran `dbt run-operation evaluate_required_docs` and `dbt run-operation evaluate_required_tests` in my development environment without error.
 - [ ] My dbt package has no residual models that are no longer used.

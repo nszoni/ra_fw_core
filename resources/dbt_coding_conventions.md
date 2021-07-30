@@ -63,6 +63,7 @@ Our models (typically) fit into three main categories: staging, integration, war
 
 - Every subdirectory should contain a `schema.yml` file, in which each model in the subdirectory is tested.
 - At a minimum, unique and not_null tests should be applied to the primary key of each model.  Utilize `dbt_utils.unique_combination_of_columns` in integration models to enforce uniqueness when multiple sources are integrated in the same row.
+- To validate that new development work doesn't break xa model's validated results, we should use regression tests on top of those xa models. In the `analysis/regression_tests` folder, you can add regression tests on top of an xa model to validate specific metric. Once created, you can execute them by running `dbt compile`.
 
 ## Naming and field conventions
 

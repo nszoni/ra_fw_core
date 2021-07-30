@@ -93,7 +93,9 @@ Another sanity check we do is to create data tests that continuously assess KPI 
 }}
 ```
 
-Finally, we can continuously assess that transformations haven't impacted our KPIs by keeping a trace of historical values and checking that when calculating KPIs after a new transformation run, the new values still matches what had been recorded previously. [This technique is documented here](https://discourse.getdbt.com/t/build-snapshot-based-tests-to-detect-regressions-in-historic-data/1478).
+As well, we can continuously assess that transformations haven't impacted our KPIs by keeping a trace of historical values and checking that when calculating KPIs after a new transformation run, the new values still matches what had been recorded previously. [This technique is documented here](https://discourse.getdbt.com/t/build-snapshot-based-tests-to-detect-regressions-in-historic-data/1478).
+
+Finally, we regression tests for our development process. They are stored in the `analysis/regression_tests` folder and can be ran using `dbt compile`.
 
 
 ## Scheduling dbt Runs
